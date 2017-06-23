@@ -10,8 +10,7 @@ TARGET = Sample
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-include(../de_skycoder42_qpm-translate.pri)
-include(dummy.pri)
+include(vendor.pri) #dummy to simlulate qpm behavior
 
 SOURCES += main.cpp
 

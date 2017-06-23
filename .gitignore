@@ -9,6 +9,8 @@
 *.so
 *.dll
 *.dylib
+*.qm
+*.ts
 
 # Qt-es
 
@@ -37,3 +39,5 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
+#qpm
+vendor
