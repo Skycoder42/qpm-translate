@@ -89,4 +89,11 @@ One major problem is, that users without the knowledget how to create the applic
 
 If you want, you can copy the text below:
 
-This package provides translations. Due to the way qpm works (with pri files), translations need some special handling. To make use of the translations, simply run `make lupdate` and `make lrelease` on your project, instead of calling the tools directly.
+This package provides translations. Due to the way qpm works (with pri files), translations need some special handling. To make use of the translations, simply run `make lupdate` and `make lrelease` on your project, instead of calling the tools directly. You can adjust parameters by preparing the tools before including vendor.pri:
+
+```.pro
+qtPrepareTool(LUPDATE, lupdate)
+LUPDATE += -locations absolute
+
+include(vendor/vendor.pri)
+```
