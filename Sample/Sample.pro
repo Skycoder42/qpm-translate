@@ -17,4 +17,8 @@ SOURCES += main.cpp
 TRANSLATIONS += sample_de.ts
 
 DISTFILES += \
-    sample.py
+	sample.py
+
+sample.target = translations
+sample.commands = cd $$PWD && ./sample.py
+QMAKE_EXTRA_TARGETS += sample
