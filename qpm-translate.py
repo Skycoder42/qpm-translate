@@ -5,7 +5,8 @@ import subprocess
 import tempfile
 import os
 
-command = sys.argv[1]
+tool = sys.argv[1]
+command = os.path.split(tool)[1]
 target = sys.argv[2]
 
 def trdummy(target):
@@ -39,6 +40,6 @@ else:
 	sys.exit(1)
 
 args = sys.argv[3:]
-args.insert(0, command)
+args.insert(0, tool)
 args.append(file.name)
 subprocess.run(args)

@@ -6,6 +6,7 @@ Allows you to:
 - Create ts files for your qpm package
 - Create ts files for pro files that use qpm
 - Create qm files from ts files of both, a pro file that uses qpm, as well as of all qpm packages.
+- Adds lupdate/lrelease make targets
 
 ### Why it is neccessary
 You cannot simply use the `TRANSLATIONS` variable in the pri file of your qpm package. The explanation why is simple:
@@ -67,13 +68,25 @@ TRANSLATIONS += $$PWD/myapp_de.ts
 
 To create the translations **without** including the translations of qpm packages (which do already have their ts files), run:
 ```.sh
+make lupdate
+```
+or alternatively
+```.sh
 ./vendor/de/skycoder42/qpm-translate/qpm-translate.py lupdate ./myapp.pro
 ```
 
 And finally, to generate **all** qm files from all ts files, run:
 ```.sh
+make lrelease
+```
+or alternatively
+```.sh
 ./vendor/de/skycoder42/qpm-translate/qpm-translate.py lrelease ./myapp.pro
 ```
 
 ### Problems
-One major problem is, that users without the knowledget how to create the applications will not be able to use your pre-generate translations. However, it will not influence normal lupdate/lrelease runs. They will simply create the ts files specified in the pro file, and all the translations (untranslated) from the qpm sources as well. This means unaware users will not have any problems with you adding this package, but will not use the features as well. Im planning to do some more research, to make it work with simpyl lupdate/lrelease use as well.
+One major problem is, that users without the knowledget how to create the applications will not be able to use your pre-generate translations. However, it will not influence normal lupdate/lrelease runs. They will simply create the ts files specified in the pro file, and all the translations (untranslated) from the qpm sources as well. This means unaware users will not have any problems with you adding this package, but will not use the features as well. To prevent this, you should promote the use of `make lupdate` and `make lrelease` in your packages.
+
+If you want, you can copy the text below:
+
+This package provides translations. Due to the way qpm works (with pri files), translations need some special handling. To make use of the translations, simply run `make lupdate` and `make lrelease` on your project, instead of calling the tools directly.
