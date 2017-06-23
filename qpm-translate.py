@@ -16,29 +16,29 @@ def trdummy(target):
 
 	return file
 
-if command == "qpm-lupdate":
-	with trdummy(target) as file:
-		args = sys.argv[3:]
-		args.insert(0, "lupdate")
-		args.append(file.name)
-		subprocess.run(args)
-elif command == "lupdate":
-	with tempfile.NamedTemporaryFile("w+", prefix=".", suffix=".pro", dir=os.path.dirname(target)) as file:
+file = None
+
+if command == "lupdate":
+	suffix = os.path.splitext(target)[1]
+	if suffix == ".pri":
+		file = trdummy(target)
+	elif suffix == ".pro":
+		file = tempfile.NamedTemporaryFile("w+", prefix=".", suffix=".pro", dir=os.path.dirname(target))
 		with open(target) as orig:
 			for line in orig:
 				if "vendor.pri" not in line:
 					file.write(line)
 		file.flush()
-
-		args = sys.argv[3:]
-		args.insert(0, "lupdate")
-		args.append(file.name)
-		subprocess.run(args)
+	else:
+		print("Unrecognized file type")
+		sys.exit(1)
 elif command == "lrelease":
-	with trdummy(target) as file:
-		args = sys.argv[3:]
-		args.insert(0, "lrelease")
-		args.append(file.name)
-		subprocess.run(args)
+	file = trdummy(target)
 else:
-	print("Usage: qpm-translate.py qpm-lupdate|lupdate|lrelease targetfile [args...]")
+	print("Usage: qpm-translate.py lupdate|lrelease pro-file|pri-file [command args...]")
+	sys.exit(1)
+
+args = sys.argv[3:]
+args.insert(0, command)
+args.append(file.name)
+subprocess.run(args)

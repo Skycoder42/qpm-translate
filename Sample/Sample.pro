@@ -15,3 +15,6 @@ include(vendor.pri) #dummy to simlulate qpm behavior
 SOURCES += main.cpp
 
 TRANSLATIONS += sample_de.ts
+
+DISTFILES += \
+    sample.py
