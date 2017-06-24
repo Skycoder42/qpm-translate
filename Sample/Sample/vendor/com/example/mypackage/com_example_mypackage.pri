@@ -1,0 +1,1 @@
+../../../../../mypackage/com_example_mypackage.pri
