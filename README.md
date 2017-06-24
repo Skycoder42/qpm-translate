@@ -7,6 +7,7 @@ Allows you to:
 - Create ts files for pro files that use qpm
 - Create qm files from ts files of both, a pro file that uses qpm, as well as of all qpm packages.
 - Adds lupdate/lrelease make targets
+	- Automatically joins all the generated qm files into one
 
 ### Why it is neccessary
 You cannot simply use the `TRANSLATIONS` variable in the pri file of your qpm package. The explanation why is simple:
@@ -80,7 +81,7 @@ or alternatively
 ./vendor/de/skycoder42/qpm-translate/qpm-translate.py lupdate ./myapp.pro
 ```
 
-And finally, to generate **all** qm files from all ts files, run:
+And finally, to generate **all** qm files from all ts files and combine them into one, run:
 ```.sh
 make lrelease
 ```
@@ -88,6 +89,8 @@ or alternatively
 ```.sh
 ./vendor/de/skycoder42/qpm-translate/qpm-translate.py lrelease ./myapp.pro
 ```
+
+The combined file, which is simply all qm files in your project and qpm modules combined (for each language) will be placed in the build folder, under the same name as the one specified in your pro file under `TRANSLATIONS`. This has the advantage that your code to load the file does not change, it's always the same qm file, even if you add new qpm packages to your project.
 
 ##### Missing translations
 In case qpm packages that you include do not provide translations, you can either generate them the same way a package developer would, or simply run plain `lupdate` on your project. It will scan the sources of qpm packages as well, and include the translations into your projects ts files.
