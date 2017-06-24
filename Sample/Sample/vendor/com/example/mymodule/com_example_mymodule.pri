@@ -1,0 +1,1 @@
+../../../../../mymodule/com_example_mymodule.pri

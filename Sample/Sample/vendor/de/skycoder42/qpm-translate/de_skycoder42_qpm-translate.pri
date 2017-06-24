@@ -1,0 +1,1 @@
+../../../../../../de_skycoder42_qpm-translate.pri

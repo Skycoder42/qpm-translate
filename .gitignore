@@ -38,6 +38,3 @@ Makefile*
 
 # QtCtreator CMake
 CMakeLists.txt.user*
-
-#qpm
-vendor
