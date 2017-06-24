@@ -8,7 +8,7 @@ isEmpty(LUPDATE) {
 }
 isEmpty(LRELEASE) {
 	qtPrepareTool(LRELEASE, lrelease)
-	LRELEASE += -compress -nounfinished
+	LRELEASE += -nounfinished
 }
 isEmpty(LCONVERT): qtPrepareTool(LCONVERT, lconvert)
 

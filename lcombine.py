@@ -16,7 +16,7 @@ for ts in translations:
 	index = name.rindex("_")
 	lang = name[index+1:]
 	filesmap[lang] = []
-	namemap[lang] = name
+	namemap[lang] = os.path.split(name)[1]
 
 for root, subdirs, files in os.walk(prodir, followlinks=True):
 	for file in files:
