@@ -10,7 +10,7 @@ TARGET = Sample
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-include(vendor.pri) #dummy to simlulate qpm behavior
+include(vendor/vendor.pri) #dummy to simlulate qpm behavior
 
 SOURCES += main.cpp
 
