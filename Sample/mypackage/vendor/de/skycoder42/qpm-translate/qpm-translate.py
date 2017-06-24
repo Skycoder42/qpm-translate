@@ -1,0 +1,1 @@
+/home/sky/Programming/QtLibraries/qpm-translate/qpm-translate.py
