@@ -6,14 +6,14 @@ import tempfile
 import os
 
 tool = sys.argv[1]
-command = os.path.split(tool)[1]
+command = os.path.splitext(os.path.split(tool)[1])[0]
 target = sys.argv[2]
 
 def trdummy(target):
-	file = tempfile.NamedTemporaryFile("w+", prefix=".", suffix=".pro", dir=os.path.dirname(target))
+	file = tempfile.NamedTemporaryFile("w+", prefix=".", suffix=".pro", dir=os.path.dirname(target), delete=False)
 	file.write("include(" + os.path.abspath(target) + ")\n")
 	file.write("TRANSLATIONS += $$QPM_TRANSLATIONS\n")
-	file.flush()
+	file.close()
 
 	return file
 
@@ -24,12 +24,12 @@ if command == "lupdate":
 	if suffix == ".pri":
 		file = trdummy(target)
 	elif suffix == ".pro":
-		file = tempfile.NamedTemporaryFile("w+", prefix=".", suffix=".pro", dir=os.path.dirname(target))
+		file = tempfile.NamedTemporaryFile("w+", prefix=".", suffix=".pro", dir=os.path.dirname(target), delete=False)
 		with open(target) as orig:
 			for line in orig:
 				if "vendor.pri" not in line:
 					file.write(line)
-		file.flush()
+		file.close()
 	else:
 		print("Unrecognized file type")
 		sys.exit(1)
@@ -43,3 +43,5 @@ args = sys.argv[3:]
 args.insert(0, tool)
 args.append(file.name)
 subprocess.run(args)
+
+os.remove(file.name)

@@ -11,9 +11,9 @@ isEmpty(LRELEASE) {
 }
 
 qpmlupdate.target = lupdate
-qpmlupdate.commands = $$PWD/qpm-translate.py $$shell_quote($$shell_path($$take_first(LUPDATE))) $$shell_quote($$shell_path($$_PRO_FILE_)) $$LUPDATE
+qpmlupdate.commands = $$shell_quote($$shell_path($$PWD/qpm-translate.py)) $$shell_quote($$shell_path($$take_first(LUPDATE))) $$shell_quote($$shell_path($$_PRO_FILE_)) $$LUPDATE
 
 qpmlrelease.target = lrelease
-qpmlrelease.commands = $$PWD/qpm-translate.py $$shell_quote($$shell_path($$take_first(LRELEASE))) $$shell_quote($$shell_path($$_PRO_FILE_)) $$LRELEASE
+qpmlrelease.commands = $$shell_quote($$shell_path($$PWD/qpm-translate.py)) $$shell_quote($$shell_path($$take_first(LRELEASE))) $$shell_quote($$shell_path($$_PRO_FILE_)) $$LRELEASE
 
 QMAKE_EXTRA_TARGETS += qpmlupdate qpmlrelease
