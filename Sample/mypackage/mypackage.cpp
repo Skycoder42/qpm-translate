@@ -1,7 +1,8 @@
-#include "dummy.h"
+#include "mypackage.h"
+#include <QDebug>
 
 MyPackage::MyPackage(QObject *parent) :
 	QObject(parent)
 {
-	tr("MyPackage translation");
+	qDebug() << tr("MyPackage translation");
 }

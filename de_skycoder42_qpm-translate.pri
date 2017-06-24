@@ -10,7 +10,7 @@ isEmpty(LRELEASE) {
 	qtPrepareTool(LRELEASE, lrelease)
 	LRELEASE += -compress -nounfinished
 }
-isEmpty(LCONVERT): qtPrepareTool(LRELEASE, lconvert)
+isEmpty(LCONVERT): qtPrepareTool(LCONVERT, lconvert)
 
 qpmlupdate.target = lupdate
 qpmlupdate.commands = $$shell_quote($$shell_path($$PWD/qpm-translate.py)) $$shell_quote($$shell_path($$take_first(LUPDATE))) $$shell_quote($$shell_path($$_PRO_FILE_)) $$LUPDATE
@@ -22,9 +22,9 @@ qpmlrelease.commands = $$shell_quote($$shell_path($$PWD/qpm-translate.py)) $$she
 win32: qpmlrelease.commands = python $$qpmlrelease.commands
 else:mac: qpmlrelease.commands = /usr/local/bin/python3 $$qpmlrelease.commands
 
-#qpmlcombine.target = lcombine
-#qpmlcombine.commands = $$shell_quote($$shell_path($$PWD/lcombine.py)) $$shell_quote($$shell_path($$take_first(LCONVERT))) $$shell_quote($$shell_path($$_PRO_FILE_PWD_)) $$TRANSLATIONS
-#win32: qpmlcombine.commands = python $$qpmlcombine.commands
-#else:mac: qpmlcombine.commands = /usr/local/bin/python3 $$qpmlcombine.commands
+qpmlcombine.target = lcombine
+qpmlcombine.commands = $$shell_quote($$shell_path($$PWD/lcombine.py)) $$shell_quote($$shell_path($$take_first(LCONVERT))) $$shell_quote($$shell_path($$_PRO_FILE_PWD_)) $$TRANSLATIONS
+win32: qpmlcombine.commands = python $$qpmlcombine.commands
+else:mac: qpmlcombine.commands = /usr/local/bin/python3 $$qpmlcombine.commands
 
-QMAKE_EXTRA_TARGETS += qpmlupdate qpmlrelease #qpmlcombine
+QMAKE_EXTRA_TARGETS += qpmlupdate qpmlrelease qpmlcombine
