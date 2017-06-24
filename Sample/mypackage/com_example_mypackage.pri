@@ -1,7 +1,7 @@
 HEADERS += \
-	$$PWD/dummy.h
+	$$PWD/mypackage.h
 
 SOURCES += \
-	$$PWD/dummy.cpp
+	$$PWD/mypackage.cpp
 
-QPM_TRANSLATIONS += $$PWD/dummy_de.ts
+QPM_TRANSLATIONS += $$PWD/mypackage_de.ts
